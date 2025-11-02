@@ -31,7 +31,7 @@ This is a single-page HTML application (no-server) designed to generate JASS cod
    - The zip contains a `Name.txt` file with generated JASS code and a `Title/` folder with renamed and converted media files.
 
 ## ZIP File Structure (Export)
-
+```
 MyName.zip/
 |
 |-- Name.txt
@@ -42,7 +42,7 @@ MyName.zip/
 |   |-- MyName2.tga
 |   |-- MyName3.mp3
 |   |-- ...
-
+```
 - `Name.txt`: Auto-generated JASS code from the 3 Logins' input data.
 - `Title/`: Contains converted media files (images -> `.tga`) with the `Primary Name` prefix.
 
@@ -71,8 +71,6 @@ MyName.zip/
 ## Quick Use 
 
 Open `index.html` directly (default browser):
-
-```
 
 ## Media Processing Tips
 
