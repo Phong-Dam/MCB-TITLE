@@ -79,8 +79,6 @@ Notes:
 - Image files are renamed using the `{PrimaryName}` prefix (e.g., `{PrimaryName}1.tga`, `{PrimaryName}2.tga`, ...). Images are converted to `.tga` (24-bit RLE) before packaging.
 - Audio files are included in the `Title/` folder and prefixed similarly (e.g., `{PrimaryName}1.mp3`).
 
-Viết thêm vào readme
-
 ## Quick Start Guide
 
 1. Open `index.html` in a modern browser (Chrome/Edge/Firefox). The app runs entirely client-side, no server needed.
