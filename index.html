@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Name Form</title>
+    <title>MCB TITLE MAKER</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
@@ -39,24 +39,24 @@
 </head>
 <body class="bg-gray-100 min-h-screen font-sans flex flex-col md:flex-row">
 
-    <div class="w-full max-w-sm bg-white p-8 shadow-2xl z-10 overflow-y-auto">
-        <h2 id="main-title" class="text-2xl font-bold mb-6 text-center text-gray-800">Information</h2>
+    <div class="w-full md:max-w-sm bg-white p-8 shadow-2xl z-10 overflow-y-auto">
+        <h2 class="text-2xl font-bold mb-6 text-center text-gray-800" id="main-title">Thông tin</h2>
+
+        <div class="mb-4">
+            <label for="language-selector" class="block text-sm font-medium text-gray-700 mb-1" id="language-label">Ngôn ngữ</label>
+            <select id="language-selector" class="w-full h-10 p-2 text-sm bg-gray-50 border border-gray-300 rounded-lg cursor-pointer focus:ring-2 focus:ring-indigo-500">
+                <option value="en" selected>English</option>
+                <option value="id">Indonesia</option>
+                <option value="ru">Russia</option>
+                <option value="th">Thailand</option>
+                <option value="vi">Việt Nam</option>
+                <option value="ko">Korean</option>
+            </select>
+        </div>
 
         <form id="infoForm" onsubmit="handleSubmit(event)">
             <div class="mb-4">
-                <label for="language-selector" id="language-label" class="block text-sm font-medium text-gray-700">Language</label>
-                <select id="language-selector" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
-                    <option value="en" selected>English</option>
-                    <option value="id">Indonesia</option>
-                    <option value="ru">Russia</option>
-                    <option value="th">Thailand</option>
-                    <option value="vi">Việt Nam</option>
-                    <option value="ko">Korean</option>
-                </select>
-            </div>
-            
-            <div class="mb-4 flex items-center">
-                <label for="name" id="name-label" class="block text-sm font-medium text-gray-700 mr-3 shrink-0">Name:</label>
+                <label for="name" class="block text-sm font-medium text-gray-700 mr-3 shrink-0" id="main-name-label">Name:</label>
                 <input 
                     type="text" 
                     id="name" 
@@ -64,7 +64,8 @@
                     required 
                     maxlength="16" 
                     class="block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                    placeholder="Enter name (max 16 chars)"
+                    placeholder="Nhập tên (tối đa 16 ký tự)"
+                    data-placeholder-key="main_name_placeholder"
                 >
             </div>
 
@@ -75,14 +76,14 @@
                     onclick="toggleLoginTabs(1)" 
                     class="group w-full flex items-center justify-between p-3 cursor-pointer list-none rounded-md border border-gray-300 bg-white hover:bg-gray-50 shadow-sm transition-colors"
                 >
-                    <span id="login1-text" class="font-medium text-gray-700">Login - 1</span>
+                    <span class="font-medium text-gray-700" id="login-1-label">Login - 1</span>
                     <svg id="loginArrow-1" class="login-arrow w-5 h-5 text-gray-500 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                     </svg>
                 </button>
                 <div id="tabs-login-1" class="tabs-container hidden flex justify-center gap-2 py-2">
-                    <button type="button" onclick="showColorPanel(1)" id="tab-name-1" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors">Name</button>
-                    <button type="button" onclick="showImageSoundPanel(1)" id="tab-imagesound-1" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors">Image/Sound</button>
+                    <button type="button" onclick="showColorPanel(1)" id="tab-name-1" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors" data-translate-key="tab_name">Name</button>
+                    <button type="button" onclick="showImageSoundPanel(1)" id="tab-imagesound-1" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors" data-translate-key="tab_imagesound">Image/Sound</button>
                 </div>
             </div>
 
@@ -93,14 +94,14 @@
                     onclick="toggleLoginTabs(2)" 
                     class="group w-full flex items-center justify-between p-3 cursor-pointer list-none rounded-md border border-gray-300 bg-white hover:bg-gray-50 shadow-sm transition-colors"
                 >
-                    <span id="login2-text" class="font-medium text-gray-700">Login - 2</span>
+                    <span class="font-medium text-gray-700" id="login-2-label">Login - 2</span>
                     <svg id="loginArrow-2" class="login-arrow w-5 h-5 text-gray-500 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                     </svg>
                 </button>
                 <div id="tabs-login-2" class="tabs-container hidden flex justify-center gap-2 py-2">
-                    <button type="button" onclick="showColorPanel(2)" id="tab-name-2" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors">Name</button>
-                    <button type="button" onclick="showImageSoundPanel(2)" id="tab-imagesound-2" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors">Image/Sound</button>
+                    <button type="button" onclick="showColorPanel(2)" id="tab-name-2" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors" data-translate-key="tab_name">Name</button>
+                    <button type="button" onclick="showImageSoundPanel(2)" id="tab-imagesound-2" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors" data-translate-key="tab_imagesound">Image/Sound</button>
                 </div>
             </div>
 
@@ -111,14 +112,14 @@
                     onclick="toggleLoginTabs(3)" 
                     class="group w-full flex items-center justify-between p-3 cursor-pointer list-none rounded-md border border-gray-300 bg-white hover:bg-gray-50 shadow-sm transition-colors"
                 >
-                    <span id="login3-text" class="font-medium text-gray-700">Login - 3</span>
+                    <span class="font-medium text-gray-700" id="login-3-label">Login - 3</span>
                     <svg id="loginArrow-3" class="login-arrow w-5 h-5 text-gray-500 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                     </svg>
                 </button>
                 <div id="tabs-login-3" class="tabs-container hidden flex justify-center gap-2 py-2">
-                    <button type="button" onclick="showColorPanel(3)" id="tab-name-3" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors">Name</button>
-                    <button type="button" onclick="showImageSoundPanel(3)" id="tab-imagesound-3" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors">Image/Sound</button>
+                    <button type="button" onclick="showColorPanel(3)" id="tab-name-3" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors" data-translate-key="tab_name">Name</button>
+                    <button type="button" onclick="showImageSoundPanel(3)" id="tab-imagesound-3" class="tab-btn text-sm font-medium py-1 px-4 rounded-lg transition-colors" data-translate-key="tab_imagesound">Image/Sound</button>
                 </div>
             </div>
             
@@ -127,11 +128,11 @@
 
             <div class="mt-6">
                 <button 
-                    type="submit" 
-                    id="save-button"
+                    type="submit"
+                    id="submit-button"
                     class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150"
                 >
-                    Save
+                    Lưu
                 </button>
             </div>
         </form>
@@ -144,7 +145,7 @@
         <div class="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-10 border border-indigo-700/50">
         
             <div class="relative mb-8 pt-1 pb-4">
-                <h3 id="color-panel-title" class="text-xl font-bold text-center text-indigo-400">Edit Name</h3>
+                <h3 class="text-xl font-bold text-center text-indigo-400" id="edit-name-title">Chỉnh sửa Name</h3>
             </div>
 
             <div class="mb-8">
@@ -163,6 +164,7 @@
                 <div id="input-editor" 
                     contenteditable="true" 
                     data-placeholder="Type, paste content, or select text and apply colors..."
+                    data-placeholder-key="input_placeholder"
                     class="w-full min-h-[180px] p-4 font-mono text-white bg-gray-500 border-2 border-gray-600 rounded-xl shadow-inner focus:outline-none focus:ring-4 focus:ring-indigo-500 transition-all duration-300">
                 </div>
             </div>
@@ -243,31 +245,37 @@
         <div class="max-w-4xl mx-auto bg-gray-800 rounded-2xl shadow-2xl p-6 md:p-10 border border-indigo-700/50">
         
             <div class="relative mb-8 pt-1 pb-4">
-                <h3 id="imagesound-panel-title" class="text-xl font-bold text-center text-indigo-400">Edit Image/Sound</h3>
+                <h3 class="text-xl font-bold text-center text-indigo-400" id="edit-imagesound-title">Chỉnh sửa Image/Sound</h3>
             </div>
 
             <div class="mb-8">
-                <label id="image-upload-label" class="block text-lg font-bold text-gray-200 mb-2">Upload Image (16:9, max 1920x1080)</label>
+                <label class="block text-lg font-bold text-gray-200 mb-2" id="image-upload-label">Tải ảnh (16:9, max 1920x1080)</label>
                 <div class="flex items-center mt-2">
-                    <label for="image-input" id="image-upload-button" class="cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">
-                        Choose File 
+                    <label class="block">
+                        <span class="sr-only" data-translate-key="choose_file_button">Choose file</span>
+                        <input type="file" id="image-input" accept="image/png, image/jpeg" class="hidden" onchange="updateFileName('image-input', 'image-file-name')"/>
+                        <span class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-200 cursor-pointer" data-translate-key="choose_file_button">
+                            Choose File
+                        </span>
                     </label>
-                    <span id="image-file-name" class="ml-4 text-gray-400 italic text-sm">No file chosen</span>
-                    <input type="file" id="image-input" accept="image/png, image/jpeg" class="hidden">
+                    <span id="image-file-name" class="ml-4 text-gray-400 italic text-sm" data-translate-key="no_file_chosen">Chưa chọn tệp</span>
                 </div>
                 <p id="image-error-msg" class="text-red-500 text-sm mt-2"></p>
                 
-                <img id="image-preview" src="" alt="Image preview" class="hidden mt-4 rounded-lg shadow-lg max-w-full h-auto bg-gray-700 p-1 border border-gray-600">
+                <img id="image-preview" src="" alt="Image Preview" class="hidden mt-4 rounded-lg shadow-lg max-w-full h-auto bg-gray-700 p-1 border border-gray-600">
             </div>
 
             <div class="mb-8">
-                <label id="audio-upload-label" class="block text-lg font-bold text-gray-200 mb-2">Upload Audio (Max 30 seconds)</label>
+                <label class="block text-lg font-bold text-gray-200 mb-2" id="audio-upload-label">Tải âm thanh (Tối đa 30 giây, .mp3)</label>
                 <div class="flex items-center mt-2">
-                    <label for="audio-input" id="audio-upload-button" class="cursor-pointer rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-700 transition-colors">
-                        Choose File
+                     <label class="block">
+                        <span class="sr-only" data-translate-key="choose_file_button">Choose file</span>
+                        <input type="file" id="audio-input" accept=".mp3" class="hidden" onchange="updateFileName('audio-input', 'audio-file-name')" />
+                        <span class="px-4 py-2 bg-indigo-600 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-indigo-700 transition-colors duration-200 cursor-pointer" data-translate-key="choose_file_button">
+                            Choose File
+                        </span>
                     </label>
-                    <span id="audio-file-name" class="ml-4 text-gray-400 italic text-sm">No file chosen</span>
-                    <input type="file" id="audio-input" accept="audio/*" class="hidden">
+                    <span id="audio-file-name" class="ml-4 text-gray-400 italic text-sm" data-translate-key="no_file_chosen">Chưa chọn tệp</span>
                 </div>
                 <p id="audio-error-msg" class="text-red-500 text-sm mt-2"></p>
                 
@@ -279,285 +287,6 @@
 
 
     <script>
-        const translations = {
-            'en': {
-                doc_title: 'Name Form',
-                main_title: 'Information',
-                language_label: 'Language',
-                name_label: 'Name:',
-                name_placeholder: 'Enter name (max 16 chars)',
-                login1: 'Login - 1',
-                login2: 'Login - 2',
-                login3: 'Login - 3',
-                tab_name: 'Name',
-                tab_imagesound: 'Image/Sound',
-                save_button: 'Save',
-                color_panel_title: 'Edit Name',
-                input_label: 'Input',
-                input_placeholder: 'Type, paste content, or select text and apply colors...',
-                bg_color_label: 'Background Color',
-                start_color_label: 'Start Color',
-                end_color_label: 'End Color',
-                gradient_preview_label: 'Gradient Preview',
-                clear_color_button: 'Clear Color',
-                apply_color_1_button: 'Apply Color 1',
-                apply_color_2_button: 'Apply Color 2',
-                create_gradient_button: 'Create Gradient',
-                imagesound_panel_title: 'Edit Image/Sound',
-                image_upload_label: 'Upload Image (16:9, max 1920x1080)',
-                audio_upload_label: 'Upload Audio (Max 30 seconds)',
-                choose_file: 'Choose File',
-                output_label: 'Output',
-                output_placeholder: 'Formatted result |c...|r will appear here...',
-                image_alt: 'Image preview',
-                no_file_chosen: 'No file chosen',
-                error_name_required: 'Error: Please enter a Name in the top field.',
-                error_output_length: (num, len) => `Error: 'Name' content for Login ${num} (${len} chars) exceeds 100 characters.`,
-                error_filename_length: (name, num) => `Error: Filename '${name}' (Login ${num}) exceeds 100 characters.`,
-                submit_success: 'Saved successfully!',
-                error_image_size: (w, h) => `Error: Image size (${w}x${h}) exceeds 1920x1080.`,
-                error_image_ratio: (ratio) => `Error: Image ratio (${ratio.toFixed(2)}) is not 16:9.`,
-                error_invalid_file: 'Invalid file, please choose again.',
-                error_read_image: 'Error: Cannot read image file.',
-                error_image_type: 'Error: Only .png or .jpg files are accepted.',
-                error_audio_duration: (duration) => `Error: Audio is too long (${duration.toFixed(1)}s), 30s max allowed.`,
-                error_read_audio: 'Error: Cannot read audio file.'
-            },
-            'vi': {
-                doc_title: 'Biểu mẫu nhập tên',
-                main_title: 'Thông tin',
-                language_label: 'Ngôn ngữ',
-                name_label: 'Name:',
-                name_placeholder: 'Nhập tên (tối đa 16 ký tự)',
-                login1: 'Login - 1',
-                login2: 'Login - 2',
-                login3: 'Login - 3',
-                tab_name: 'Tên',
-                tab_imagesound: 'Ảnh/Âm thanh',
-                save_button: 'Lưu',
-                color_panel_title: 'Chỉnh sửa Tên',
-                input_label: 'Đầu vào',
-                input_placeholder: 'Gõ, dán nội dung, hoặc bôi đen và áp dụng màu sắc...',
-                bg_color_label: 'Màu Nền',
-                start_color_label: 'Màu Bắt đầu',
-                end_color_label: 'Màu Kết thúc',
-                gradient_preview_label: 'Xem trước Gradient',
-                clear_color_button: 'Xóa Màu',
-                apply_color_1_button: 'Áp Dụng Màu 1',
-                apply_color_2_button: 'Áp Dụng Màu 2',
-                create_gradient_button: 'Tạo Gradient',
-                imagesound_panel_title: 'Chỉnh sửa Ảnh/Âm thanh',
-                image_upload_label: 'Tải ảnh (16:9, max 1920x1080)',
-                audio_upload_label: 'Tải âm thanh (Tối đa 30 giây)',
-                choose_file: 'Chọn tệp',
-                output_label: 'Đầu ra',
-                output_placeholder: 'Kết quả định dạng |c...|r sẽ xuất hiện ở đây...',
-                image_alt: 'Xem trước ảnh',
-                no_file_chosen: 'Chưa chọn tệp',
-                error_name_required: 'Lỗi: Vui lòng nhập Name ở ô trên cùng.',
-                error_output_length: (num, len) => `Lỗi: Nội dung 'Name' của Login ${num} (${len} ký tự) vượt quá 100 ký tự.`,
-                error_filename_length: (name, num) => `Lỗi: Tên tệp '${name}' (Login ${num}) quá 100 ký tự.`,
-                submit_success: 'Lưu thành công!',
-                error_image_size: (w, h) => `Lỗi: Kích thước ảnh (${w}x${h}) vượt quá 1920x1080.`,
-                error_image_ratio: (ratio) => `Lỗi: Tỷ lệ ảnh (${ratio.toFixed(2)}) không phải 16:9.`,
-                error_invalid_file: 'Tệp không hợp lệ, vui lòng chọn lại.',
-                error_read_image: 'Lỗi: Không thể đọc tệp ảnh.',
-                error_image_type: 'Lỗi: Chỉ chấp nhận tệp .png hoặc .jpg.',
-                error_audio_duration: (duration) => `Lỗi: Âm thanh dài (${duration.toFixed(1)}s), chỉ cho phép 30s.`,
-                error_read_audio: 'Lỗi: Không thể đọc tệp âm thanh.'
-            }
-        };
-
-        translations.id = {
-            ...translations.en,
-            doc_title: 'Formulir Nama',
-            main_title: 'Informasi',
-            language_label: 'Bahasa',
-            name_placeholder: 'Masukkan nama (maks 16 karakter)',
-            tab_name: 'Nama',
-            tab_imagesound: 'Gambar/Suara',
-            save_button: 'Simpan',
-            color_panel_title: 'Edit Nama',
-            input_label: 'Masukan',
-            input_placeholder: 'Ketik, tempel konten, atau pilih teks...',
-            bg_color_label: 'Warna Latar',
-            start_color_label: 'Warna Awal',
-            end_color_label: 'Warna Akhir',
-            gradient_preview_label: 'Pratinjau Gradien',
-            clear_color_button: 'Hapus Warna',
-            apply_color_1_button: 'Terapkan Warna 1',
-            apply_color_2_button: 'Terapkan Warna 2',
-            create_gradient_button: 'Buat Gradien',
-            imagesound_panel_title: 'Edit Gambar/Suara',
-            image_upload_label: 'Unggah Gambar (16:9, maks 1920x1080)',
-            audio_upload_label: 'Unggah Audio (Maks 30 detik)',
-            choose_file: 'Pilih File',
-            output_label: 'Keluaran',
-            output_placeholder: 'Hasil format |c...|r akan muncul di sini...',
-            image_alt: 'Pratinjau gambar',
-            no_file_chosen: 'Tidak ada file yang dipilih',
-            error_name_required: 'Kesalahan: Harap masukkan Nama di bidang atas.',
-            submit_success: 'Berhasil disimpan!',
-        };
-        
-        translations.ru = {
-            ...translations.en,
-            doc_title: 'Форма имени',
-            main_title: 'Информация',
-            language_label: 'Язык',
-            name_placeholder: 'Введите имя (макс 16 симв)',
-            tab_name: 'Имя',
-            tab_imagesound: 'Изобр./Звук',
-            save_button: 'Сохранить',
-            color_panel_title: 'Редакт. Имя',
-            input_label: 'Ввод',
-            input_placeholder: 'Введите, вставьте контент или выберите текст...',
-            bg_color_label: 'Цвет фона',
-            start_color_label: 'Начальный цвет',
-            end_color_label: 'Конечный цвет',
-            gradient_preview_label: 'Просмотр градиента',
-            clear_color_button: 'Очистить цвет',
-            apply_color_1_button: 'Применить цвет 1',
-            apply_color_2_button: 'Применить цвет 2',
-            create_gradient_button: 'Создать градиент',
-            imagesound_panel_title: 'Редакт. Изобр./Звук',
-            image_upload_label: 'Загрузить изображение (16:9, макс 1920x1080)',
-            audio_upload_label: 'Загрузить аудио (Макс 30 секунд)',
-            choose_file: 'Выберите файл',
-            output_label: 'Вывод',
-            output_placeholder: 'Результат |c...|r появится здесь...',
-            image_alt: 'Просмотр изображения',
-            no_file_chosen: 'Файл не выбран',
-            error_name_required: 'Ошибка: Пожалуйста, введите имя в верхнем поле.',
-            submit_success: 'Успешно сохранено!',
-        };
-        
-        translations.th = {
-            ...translations.en,
-            doc_title: 'ฟอร์มชื่อ',
-            main_title: 'ข้อมูล',
-            language_label: 'ภาษา',
-            name_placeholder: 'ป้อนชื่อ (สูงสุด 16 ตัวอักษร)',
-            tab_name: 'ชื่อ',
-            tab_imagesound: 'รูป/เสียง',
-            save_button: 'บันทึก',
-            color_panel_title: 'แก้ไขชื่อ',
-            input_label: 'อินพุต',
-            input_placeholder: 'พิมพ์, วางเนื้อหา, หรือเลือกข้อความ...',
-            bg_color_label: 'สีพื้นหลัง',
-            start_color_label: 'สีเริ่มต้น',
-            end_color_label: 'สีสิ้นสุด',
-            gradient_preview_label: 'ตัวอย่างไล่สี',
-            clear_color_button: 'ล้างสี',
-            apply_color_1_button: 'ใช้สี 1',
-            apply_color_2_button: 'ใช้สี 2',
-            create_gradient_button: 'สร้างไล่สี',
-            imagesound_panel_title: 'แก้ไขรูปภาพ/เสียง',
-            image_upload_label: 'อัปโหลดรูปภาพ (16:9, สูงสุด 1920x1080)',
-            audio_upload_label: 'อัปโหลดเสียง (สูงสุด 30 วินาที)',
-            choose_file: 'เลือกไฟล์',
-            output_label: 'เอาต์พุต',
-            output_placeholder: 'ผลลัพธ์ |c...|r จะปรากฏที่นี่...',
-            image_alt: 'ตัวอย่างรูปภาพ',
-            no_file_chosen: 'ยังไม่ได้เลือกไฟล์',
-            error_name_required: 'ข้อผิดพลาด: กรุณาป้อนชื่อในช่องด้านบน',
-            submit_success: 'บันทึกสำเร็จ!',
-        };
-        
-        translations.ko = {
-            ...translations.en,
-            doc_title: '이름 양식',
-            main_title: '정보',
-            language_label: '언어',
-            name_placeholder: '이름 입력 (최대 16자)',
-            tab_name: '이름',
-            tab_imagesound: '이미지/소리',
-            save_button: '저장',
-            color_panel_title: '이름 편집',
-            input_label: '입력',
-            input_placeholder: '내용 입력, 붙여넣기 또는 텍스트 선택...',
-            bg_color_label: '배경색',
-            start_color_label: '시작 색상',
-            end_color_label: '끝 색상',
-            gradient_preview_label: '그라데이션 미리보기',
-            clear_color_button: '색상 지우기',
-            apply_color_1_button: '색상 1 적용',
-            apply_color_2_button: '색상 2 적용',
-            create_gradient_button: '그라데이션 만들기',
-            imagesound_panel_title: '이미지/소리 편집',
-            image_upload_label: '이미지 업로드 (16:9, 최대 1920x1080)',
-            audio_upload_label: '오디오 업로드 (최대 30초)',
-            choose_file: '파일 선택',
-            output_label: '출력',
-            output_placeholder: '결과 |c...|r가 여기에 표시됩니다...',
-            image_alt: '이미지 미리보기',
-            no_file_chosen: '선택된 파일 없음',
-            error_name_required: '오류: 상단 필드에 이름을 입력하세요.',
-            submit_success: '성공적으로 저장되었습니다!',
-        };
-
-
-        let currentLanguage = 'en';
-
-        function updateUI(lang) {
-            currentLanguage = lang;
-            const t = translations[lang] || translations['en'];
-
-            document.documentElement.lang = lang;
-            
-            const setText = (id, key) => {
-                const el = document.getElementById(id);
-                if (el) el.textContent = t[key];
-            };
-            const setAttr = (id, attr, key) => {
-                const el = document.getElementById(id);
-                if (el) el.setAttribute(attr, t[key]);
-            };
-
-            document.title = t.doc_title;
-
-            setText('main-title', 'main_title');
-            setText('language-label', 'language_label');
-            setText('name-label', 'name_label');
-            setAttr('name', 'placeholder', 'name_placeholder');
-            setText('login1-text', 'login1');
-            setText('login2-text', 'login2');
-            setText('login3-text', 'login3');
-            setText('save-button', 'save_button');
-
-            document.querySelectorAll('[id^="tab-name-"]').forEach(el => el.textContent = t.tab_name);
-            document.querySelectorAll('[id^="tab-imagesound-"]').forEach(el => el.textContent = t.tab_imagesound);
-
-            setText('color-panel-title', 'color_panel_title');
-            setText('input-label', 'input_label');
-            setAttr('input-editor', 'data-placeholder', 'input_placeholder');
-            setText('bg-color-label', 'bg_color_label');
-            setText('start-color-label', 'start_color_label');
-            setText('end-color-label', 'end_color_label');
-            setText('gradient-preview-label', 'gradient_preview_label');
-            setText('clear-color-button', 'clear_color_button');
-            setText('apply-color-button', 'apply_color_1_button');
-            setText('apply-color-button-2', 'apply_color_2_button');
-            setText('apply-gradient-button', 'create_gradient_button');
-            setText('output-label', 'output_label');
-            setAttr('output-editor', 'data-placeholder', 'output_placeholder');
-
-            setText('imagesound-panel-title', 'imagesound_panel_title');
-            setText('image-upload-label', 'image_upload_label');
-            setText('audio-upload-label', 'audio_upload_label');
-            setAttr('image-preview', 'alt', 'image_alt');
-            
-            setText('image-upload-button', 'choose_file');
-            setText('audio-upload-button', 'choose_file');
-            
-            if (!loginData[currentActiveContext?.number]?.imageName) {
-                setText('image-file-name', 'no_file_chosen');
-            }
-             if (!loginData[currentActiveContext?.number]?.audioName) {
-                setText('audio-file-name', 'no_file_chosen');
-            }
-        }
-
         const loginPanel = document.getElementById('loginPanel');
         const imageSoundPanel = document.getElementById('imageSoundPanel');
         const allTabContainers = document.querySelectorAll('.tabs-container');
@@ -570,16 +299,320 @@
             2: { name: '', output: '', imageUrl: null, imageFile: null, audioUrl: null, audioFile: null, imageName: '', audioName: '' },
             3: { name: '', output: '', imageUrl: null, imageFile: null, audioUrl: null, audioFile: null, imageName: '', audioName: '' }
         };
-        let currentActiveContext = null;
+        let currentActiveContext = null; 
+
+        const translations_en = {
+            main_title: 'Information',
+            language_label: 'Language',
+            main_name_label: 'Name:',
+            main_name_placeholder: 'Enter name (max 16 chars)',
+            login_1_label: 'Login - 1',
+            login_2_label: 'Login - 2',
+            login_3_label: 'Login - 3',
+            tab_name: 'Name',
+            tab_imagesound: 'Image/Sound',
+            submit_button: 'Save',
+            edit_name_title: 'Edit Name',
+            input_label: 'Input',
+            bg_color_label: 'Background Color',
+            input_placeholder: 'Type, paste content, or select text and apply colors...',
+            start_color_label: 'Start Color',
+            end_color_label: 'End Color',
+            gradient_preview_label: 'Gradient Preview',
+            clear_color_button: 'Clear Color',
+            apply_color_1_button: 'Apply Color 1',
+            apply_color_2_button: 'Apply Color 2',
+            create_gradient_button: 'Create Gradient',
+            edit_imagesound_title: 'Edit Image/Sound',
+            image_upload_label: 'Upload Image (16:9, max 1920x1080)',
+            audio_upload_label: 'Upload Audio (Max 30s, .mp3)',
+            choose_file_button: 'Choose File',
+            no_file_chosen: 'No file chosen',
+            success_message: 'Saved successfully!',
+            error_main_name: 'Error: Please enter a Name at the top.',
+            error_name_length: (loginNumber, length) => `Error: 'Name' content for Login ${loginNumber} (${length} chars) exceeds 100 characters.`,
+            error_filename_length: (filename, loginNumber) => `Error: Filename '${filename}' (Login ${loginNumber}) exceeds 100 characters.`,
+            image_error_size: (w, h) => `Error: Image size (${w}x${h}) exceeds 1920x1080.`,
+            image_error_ratio: (ratio) => `Error: Image ratio (${ratio.toFixed(2)}) is not 16:9.`,
+            image_error_read: 'Error: Cannot read image file.',
+            image_error_invalid: 'Invalid file, please select again.',
+            image_error_type: 'Error: Only .png or .jpg files are accepted.',
+            audio_error_duration: (duration) => `Error: Audio is too long (${duration.toFixed(1)}s), 30s max.`,
+            audio_error_read: 'Error: Cannot read audio file.',
+            audio_error_type: 'Error: Only .mp3 files are accepted.'
+        };
+
+        const translations_vi = {
+            main_title: 'Thông tin',
+            language_label: 'Ngôn ngữ',
+            main_name_label: 'Name:',
+            main_name_placeholder: 'Nhập tên (tối đa 16 ký tự)',
+            login_1_label: 'Login - 1',
+            login_2_label: 'Login - 2',
+            login_3_label: 'Login - 3',
+            tab_name: 'Tên',
+            tab_imagesound: 'Ảnh/Âm thanh',
+            submit_button: 'Lưu',
+            edit_name_title: 'Chỉnh sửa Tên',
+            input_label: 'Đầu vào',
+            bg_color_label: 'Màu Nền',
+            input_placeholder: 'Gõ, dán nội dung, hoặc bôi đen và áp dụng màu sắc...',
+            start_color_label: 'Màu Bắt đầu',
+            end_color_label: 'Màu Kết thúc',
+            gradient_preview_label: 'Xem trước Gradient',
+            clear_color_button: 'Xóa Màu',
+            apply_color_1_button: 'Áp Dụng Màu 1',
+            apply_color_2_button: 'Áp Dụng Màu 2',
+            create_gradient_button: 'Tạo Gradient',
+            edit_imagesound_title: 'Chỉnh sửa Ảnh/Âm thanh',
+            image_upload_label: 'Tải ảnh (16:9, max 1920x1080)',
+            audio_upload_label: 'Tải âm thanh (Tối đa 30s, .mp3)',
+            choose_file_button: 'Chọn tệp',
+            no_file_chosen: 'Chưa chọn tệp',
+            success_message: 'Đã lưu thành công!',
+            error_main_name: 'Lỗi: Vui lòng nhập Name ở ô trên cùng.',
+            error_name_length: (loginNumber, length) => `Lỗi: Nội dung 'Tên' của Login ${loginNumber} (${length} ký tự) vượt quá 100 ký tự.`,
+            error_filename_length: (filename, loginNumber) => `Lỗi: Tên tệp '${filename}' (Login ${loginNumber}) quá 100 ký tự.`,
+            image_error_size: (w, h) => `Lỗi: Kích thước ảnh (${w}x${h}) vượt quá 1920x1080.`,
+            image_error_ratio: (ratio) => `Lỗi: Tỷ lệ ảnh (${ratio.toFixed(2)}) không phải 16:9.`,
+            image_error_read: 'Lỗi: Không thể đọc tệp ảnh.',
+            image_error_invalid: 'Tệp không hợp lệ, vui lòng chọn lại.',
+            image_error_type: 'Lỗi: Chỉ chấp nhận tệp .png hoặc .jpg.',
+            audio_error_duration: (duration) => `Lỗi: Âm thanh quá dài (${duration.toFixed(1)}s), tối đa 30s.`,
+            audio_error_read: 'Lỗi: Không thể đọc tệp âm thanh.',
+            audio_error_type: 'Lỗi: Chỉ chấp nhận tệp .mp3.'
+        };
+        
+        const translations = {
+            'en': translations_en,
+            'vi': translations_vi,
+            'id': { ...translations_en,
+                main_title: 'Informasi',
+                language_label: 'Bahasa',
+                main_name_label: 'Nama:',
+                main_name_placeholder: 'Masukkan nama (maks 16 karakter)',
+                login_1_label: 'Login - 1',
+                login_2_label: 'Login - 2',
+                login_3_label: 'Login - 3',
+                tab_name: 'Nama',
+                tab_imagesound: 'Gambar/Suara',
+                submit_button: 'Simpan',
+                edit_name_title: 'Edit Nama',
+                input_label: 'Masukan',
+                bg_color_label: 'Warna Latar',
+                input_placeholder: 'Ketik, tempel konten, atau pilih teks dan terapkan warna...',
+                start_color_label: 'Warna Awal',
+                end_color_label: 'Warna Akhir',
+                gradient_preview_label: 'Pratinjau Gradien',
+                clear_color_button: 'Hapus Warna',
+                apply_color_1_button: 'Terapkan Warna 1',
+                apply_color_2_button: 'Terapkan Warna 2',
+                create_gradient_button: 'Buat Gradien',
+                edit_imagesound_title: 'Edit Gambar/Suara',
+                image_upload_label: 'Unggah Gambar (16:9, maks 1920x1080)',
+                audio_upload_label: 'Unggah Audio (Maks 30d, .mp3)',
+                choose_file_button: 'Pilih File',
+                no_file_chosen: 'Tidak ada file yang dipilih',
+                success_message: 'Berhasil disimpan!',
+                error_main_name: 'Error: Harap masukkan Nama di atas.',
+                error_name_length: (loginNumber, length) => `Error: Konten 'Nama' untuk Login ${loginNumber} (${length} karakter) melebihi 100 karakter.`,
+                error_filename_length: (filename, loginNumber) => `Error: Nama file '${filename}' (Login ${loginNumber}) melebihi 100 karakter.`,
+                image_error_size: (w, h) => `Error: Ukuran gambar (${w}x${h}) melebihi 1920x1080.`,
+                image_error_ratio: (ratio) => `Error: Rasio gambar (${ratio.toFixed(2)}) bukan 16:9.`,
+                image_error_read: 'Error: Tidak dapat membaca file gambar.',
+                image_error_invalid: 'File tidak valid, silakan pilih lagi.',
+                image_error_type: 'Error: Hanya file .png atau .jpg yang diterima.',
+                audio_error_duration: (duration) => `Error: Audio terlalu panjang (${duration.toFixed(1)}d), maks 30d.`,
+                audio_error_read: 'Error: Tidak dapat membaca file audio.',
+                audio_error_type: 'Error: Hanya file .mp3 yang diterima.'
+            },
+            'ru': { ...translations_en,
+                main_title: 'Информация',
+                language_label: 'Язык',
+                main_name_label: 'Имя:',
+                main_name_placeholder: 'Введите имя (макс. 16 симв.)',
+                login_1_label: 'Логин - 1',
+                login_2_label: 'Логин - 2',
+                login_3_label: 'Логин - 3',
+                tab_name: 'Имя',
+                tab_imagesound: 'Изобр./Звук',
+                submit_button: 'Сохранить',
+                edit_name_title: 'Редакт. Имя',
+                input_label: 'Ввод',
+                bg_color_label: 'Цвет фона',
+                input_placeholder: 'Введите, вставьте контент или выберите текст и примените цвета...',
+                start_color_label: 'Начальный цвет',
+                end_color_label: 'Конечный цвет',
+                gradient_preview_label: 'Предпросмотр градиента',
+                clear_color_button: 'Очистить цвет',
+                apply_color_1_button: 'Применить цвет 1',
+                apply_color_2_button: 'Применить цвет 2',
+                create_gradient_button: 'Создать градиент',
+                edit_imagesound_title: 'Редакт. Изобр./Звук',
+                image_upload_label: 'Загрузить изображение (16:9, макс. 1920x1080)',
+                audio_upload_label: 'Загрузить аудио (Макс. 30с, .mp3)',
+                choose_file_button: 'Выберите файл',
+                no_file_chosen: 'Файл не выбран',
+                success_message: 'Успешно сохранено!',
+                error_main_name: 'Ошибка: Пожалуйста, введите Имя вверху.',
+                error_name_length: (loginNumber, length) => `Ошибка: Содержимое 'Имя' для Логина ${loginNumber} (${length} симв.) превышает 100 символов.`,
+                error_filename_length: (filename, loginNumber) => `Ошибка: Имя файла '${filename}' (Логин ${loginNumber}) превышает 100 символов.`,
+                image_error_size: (w, h) => `Ошибка: Размер изображения (${w}x${h}) превышает 1920x1080.`,
+                image_error_ratio: (ratio) => `Ошибка: Соотношение сторон (${ratio.toFixed(2)}) не 16:9.`,
+                image_error_read: 'Ошибка: Невозможно прочитать файл изображения.',
+                image_error_invalid: 'Неверный файл, выберите еще раз.',
+                image_error_type: 'Ошибка: Принимаются только файлы .png или .jpg.',
+                audio_error_duration: (duration) => `Ошибка: Аудио слишком длинное (${duration.toFixed(1)}с), макс. 30с.`,
+                audio_error_read: 'Ошибка: Невозможно прочитать аудиофайл.',
+                audio_error_type: 'Ошибка: Принимаются только файлы .mp3.'
+            },
+            'th': { ...translations_en,
+                main_title: 'ข้อมูล',
+                language_label: 'ภาษา',
+                main_name_label: 'ชื่อ:',
+                main_name_placeholder: 'ป้อนชื่อ (สูงสุด 16 ตัวอักษร)',
+                login_1_label: 'ล็อกอิน - 1',
+                login_2_label: 'ล็อกอิน - 2',
+                login_3_label: 'ล็อกอิน - 3',
+                tab_name: 'ชื่อ',
+                tab_imagesound: 'รูปภาพ/เสียง',
+                submit_button: 'บันทึก',
+                edit_name_title: 'แก้ไขชื่อ',
+                input_label: 'อินพุต',
+                bg_color_label: 'สีพื้นหลัง',
+                input_placeholder: 'พิมพ์ วางเนื้อหา หรือเลือกข้อความและใช้สี...',
+                start_color_label: 'สีเริ่มต้น',
+                end_color_label: 'สีสิ้นสุด',
+                gradient_preview_label: 'ตัวอย่างการไล่ระดับสี',
+                clear_color_button: 'ล้างสี',
+                apply_color_1_button: 'ใช้สี 1',
+                apply_color_2_button: 'ใช้สี 2',
+                create_gradient_button: 'สร้างการไล่ระดับสี',
+                edit_imagesound_title: 'แก้ไขรูปภาพ/เสียง',
+                image_upload_label: 'อัปโหลดรูปภาพ (16:9, สูงสุด 1920x1080)',
+                audio_upload_label: 'อัปโหลดเสียง (สูงสุด 30 วินาที, .mp3)',
+                choose_file_button: 'เลือกไฟล์',
+                no_file_chosen: 'ยังไม่ได้เลือกไฟล์',
+                success_message: 'บันทึกสำเร็จ!',
+                error_main_name: 'ข้อผิดพลาด: กรุณาป้อนชื่อที่ด้านบน',
+                error_name_length: (loginNumber, length) => `ข้อผิดพลาด: เนื้อหา 'ชื่อ' สำหรับล็อกอิน ${loginNumber} (${length} ตัวอักษร) เกิน 100 ตัวอักษร`,
+                error_filename_length: (filename, loginNumber) => `ข้อผิดพลาด: ชื่อไฟล์ '${filename}' (ล็อกอิน ${loginNumber}) เกิน 100 ตัวอักษร`,
+                image_error_size: (w, h) => `ข้อผิดพลาด: ขนาดรูปภาพ (${w}x${h}) เกิน 1920x1080`,
+                image_error_ratio: (ratio) => `ข้อผิดพลาด: อัตราส่วนภาพ (${ratio.toFixed(2)}) ไม่ใช่ 16:9`,
+                image_error_read: 'ข้อผิดพลาด: ไม่สามารถอ่านไฟล์รูปภาพได้',
+                image_error_invalid: 'ไฟล์ไม่ถูกต้อง โปรดเลือกใหม่',
+                image_error_type: 'ข้อผิดพลาด: รับเฉพาะไฟล์ .png หรือ .jpg เท่านั้น',
+                audio_error_duration: (duration) => `ข้อผิดพลาด: ไฟล์เสียงยาวเกินไป (${duration.toFixed(1)} วินาที), สูงสุด 30 วินาที`,
+                audio_error_read: 'ข้อผิดพลาด: ไม่สามารถอ่านไฟล์เสียงได้',
+                audio_error_type: 'ข้อผิดพลาด: รับเฉพาะไฟล์ .mp3 เท่านั้น'
+            },
+            'ko': { ...translations_en,
+                main_title: '정보',
+                language_label: '언어',
+                main_name_label: '이름:',
+                main_name_placeholder: '이름 입력 (최대 16자)',
+                login_1_label: '로그인 - 1',
+                login_2_label: '로그인 - 2',
+                login_3_label: '로그인 - 3',
+                tab_name: '이름',
+                tab_imagesound: '이미지/사운드',
+                submit_button: '저장',
+                edit_name_title: '이름 편집',
+                input_label: '입력',
+                bg_color_label: '배경색',
+                input_placeholder: '내용을 입력, 붙여넣기하거나 텍스트를 선택하여 색상을 적용하세요...',
+                start_color_label: '시작 색상',
+                end_color_label: '끝 색상',
+                gradient_preview_label: '그라데이션 미리보기',
+                clear_color_button: '색상 지우기',
+                apply_color_1_button: '색상 1 적용',
+                apply_color_2_button: '색상 2 적용',
+                create_gradient_button: '그라데이션 생성',
+                edit_imagesound_title: '이미지/사운드 편집',
+                image_upload_label: '이미지 업로드 (16:9, 최대 1920x1080)',
+                audio_upload_label: '오디오 업로드 (최대 30초, .mp3)',
+                choose_file_button: '파일 선택',
+                no_file_chosen: '선택된 파일 없음',
+                success_message: '성공적으로 저장되었습니다!',
+                error_main_name: '오류: 상단에 이름을 입력하세요.',
+                error_name_length: (loginNumber, length) => `오류: 로그인 ${loginNumber}의 '이름' 내용(${length}자)이 100자를 초과합니다.`,
+                error_filename_length: (filename, loginNumber) => `오류: 파일 이름 '${filename}'(로그인 ${loginNumber})이 100자를 초과합니다.`,
+                image_error_size: (w, h) => `오류: 이미지 크기(${w}x${h})가 1920x1080을 초과합니다.`,
+                image_error_ratio: (ratio) => `오류: 이미지 비율(${ratio.toFixed(2)})이 16:9가 아닙니다.`,
+                image_error_read: '오류: 이미지 파일을 읽을 수 없습니다.',
+                image_error_invalid: '잘못된 파일입니다. 다시 선택하세요.',
+                image_error_type: '오류: .png 또는 .jpg 파일만 허용됩니다.',
+                audio_error_duration: (duration) => `오류: 오디오가 너무 깁니다(${duration.toFixed(1)}초). 최대 30초.`,
+                audio_error_read: '오류: 오디오 파일을 읽을 수 없습니다.',
+                audio_error_type: '오류: .mp3 파일만 허용됩니다.'
+            }
+        };
+
+        let currentLang = 'vi';
+
+        function updateUI(lang) {
+            currentLang = lang;
+            const t = translations[lang] || translations_en;
+
+            document.documentElement.lang = lang;
+            
+            document.getElementById('main-title').textContent = t.main_title;
+            document.getElementById('language-label').textContent = t.language_label;
+            document.getElementById('main-name-label').textContent = t.main_name_label;
+            document.getElementById('name').setAttribute('placeholder', t.main_name_placeholder);
+            
+            document.getElementById('login-1-label').textContent = t.login_1_label;
+            document.getElementById('login-2-label').textContent = t.login_2_label;
+            document.getElementById('login-3-label').textContent = t.login_3_label;
+
+            document.querySelectorAll('[data-translate-key="tab_name"]').forEach(el => el.textContent = t.tab_name);
+            document.querySelectorAll('[data-translate-key="tab_imagesound"]').forEach(el => el.textContent = t.tab_imagesound);
+            
+            document.getElementById('submit-button').textContent = t.submit_button;
+            document.getElementById('edit-name-title').textContent = t.edit_name_title;
+            document.getElementById('input-label').textContent = t.input_label;
+            document.getElementById('bg-color-label').textContent = t.bg_color_label;
+            document.getElementById('input-editor').setAttribute('data-placeholder', t.input_placeholder);
+            document.getElementById('start-color-label').textContent = t.start_color_label;
+            document.getElementById('end-color-label').textContent = t.end_color_label;
+            document.getElementById('gradient-preview-label').textContent = t.gradient_preview_label;
+            document.getElementById('clear-color-button').textContent = t.clear_color_button;
+            document.getElementById('apply-color-button').textContent = t.apply_color_1_button;
+            document.getElementById('apply-color-button-2').textContent = t.apply_color_2_button;
+            document.getElementById('apply-gradient-button').textContent = t.create_gradient_button;
+            
+            document.getElementById('edit-imagesound-title').textContent = t.edit_imagesound_title;
+            document.getElementById('image-upload-label').textContent = t.image_upload_label;
+            document.getElementById('audio-upload-label').textContent = t.audio_upload_label;
+
+            document.querySelectorAll('[data-translate-key="choose_file_button"]').forEach(el => {
+                el.textContent = t.choose_file_button;
+                el.setAttribute('aria-label', t.choose_file_button);
+            });
+            
+            updateFileName('image-input', 'image-file-name');
+            updateFileName('audio-input', 'audio-file-name');
+        }
+
+        function updateFileName(inputId, labelId) {
+            const input = document.getElementById(inputId);
+            const label = document.getElementById(labelId);
+            const t = translations[currentLang] || translations_en;
+
+            if (input.files.length > 0) {
+                label.textContent = input.files[0].name;
+            } else {
+                label.textContent = t.no_file_chosen;
+            }
+        }
+
 
         const imageInput = document.getElementById('image-input');
         const imagePreview = document.getElementById('image-preview');
         const imageErrorMsg = document.getElementById('image-error-msg');
-        const imageFileName = document.getElementById('image-file-name');
         
         const audioInput = document.getElementById('audio-input');
         const audioPreview = document.getElementById('audio-preview');
-        const audioFileName = document.getElementById('audio-file-name');
         const audioErrorMsg = document.getElementById('audio-error-msg');
 
         async function convertCanvasToTgaBlob(canvas) {
@@ -587,23 +620,23 @@
             const width = canvas.width;
             const height = canvas.height;
             const imageData = ctx.getImageData(0, 0, width, height);
-            const data = imageData.data;
+            const data = imageData.data; 
 
             const header = new Uint8Array(18);
             header.fill(0);
-            header[2] = 10;
+            header[2] = 10; 
             header[12] = width & 0xFF;
             header[13] = (width >> 8) & 0xFF;
             header[14] = height & 0xFF;
             header[15] = (height >> 8) & 0xFF;
-            header[16] = 24;
-            header[17] = 0x20;
+            header[16] = 24; 
+            header[17] = 0x20; 
 
             const pixels = [];
             for (let i = 0; i < data.length; i += 4) {
-                pixels.push(data[i + 2]);
-                pixels.push(data[i + 1]);
-                pixels.push(data[i + 0]);
+                pixels.push(data[i + 2]); 
+                pixels.push(data[i + 1]); 
+                pixels.push(data[i + 0]); 
             }
 
             const rleData = [];
@@ -624,8 +657,8 @@
                 }
 
                 if (runLength > 1) {
-                    rleData.push(0x80 | (runLength - 1));
-                    rleData.push(pixels[i], pixels[i + 1], pixels[i + 2]);
+                    rleData.push(0x80 | (runLength - 1)); 
+                    rleData.push(pixels[i], pixels[i + 1], pixels[i + 2]); 
                     i += runLength * 3;
                 } else {
                     let rawLength = 1;
@@ -634,12 +667,12 @@
                             pixels[i + rawLength * 3] === pixels[i + (rawLength + 1) * 3] &&
                             pixels[i + rawLength * 3 + 1] === pixels[i + (rawLength + 1) * 3 + 1] &&
                             pixels[i + rawLength * 3 + 2] === pixels[i + (rawLength + 1) * 3 + 2]) {
-                            break;
+                            break; 
                         }
                         rawLength++;
                     }
                     
-                    rleData.push(rawLength - 1);
+                    rleData.push(rawLength - 1); 
                     for (let k = 0; k < rawLength; k++) {
                         rleData.push(pixels[i + k * 3]);
                         rleData.push(pixels[i + k * 3 + 1]);
@@ -663,7 +696,7 @@
             if (type === 'name' && inputEditor) {
                 loginData[number].name = inputEditor.innerHTML;
                 
-                if (window.updateOutput) window.updateOutput();
+                if (window.updateOutput) window.updateOutput(); 
                 const outputEditor = document.getElementById('output-editor');
                 if (outputEditor) {
                     loginData[number].output = outputEditor.textContent;
@@ -676,7 +709,7 @@
             const arrowToToggle = document.getElementById(`loginArrow-${loginNumber}`);
             
             const isOpening = tabsToToggle.classList.contains('hidden');
-            const previousContext = currentActiveContext ? { ...currentActiveContext } : null;
+            const previousContext = currentActiveContext ? { ...currentActiveContext } : null; 
 
             if (!isOpening && previousContext && previousContext.number === loginNumber) {
                 saveCurrentContext();
@@ -728,7 +761,7 @@
             if (inputEditor) {
                 inputEditor.innerHTML = loginData[loginNumber].name;
                 if (window.updateOutput) {
-                    window.updateOutput();
+                    window.updateOutput(); 
                 }
             }
 
@@ -741,7 +774,7 @@
             saveCurrentContext();
             currentActiveContext = { number: loginNumber, type: 'imagesound' };
             
-            loadMediaState(loginNumber);
+            loadMediaState(loginNumber); 
 
             loginPanel.classList.add('hidden');
             imageSoundPanel.classList.remove('hidden');
@@ -750,7 +783,7 @@
 
         function loadMediaState(loginNumber) {
             const data = loginData[loginNumber];
-            const t = translations[currentLanguage] || translations['en'];
+            const t = translations[currentLang] || translations_en;
 
             if (data.imageUrl) {
                 imagePreview.src = data.imageUrl;
@@ -759,9 +792,9 @@
                 imagePreview.src = '';
                 imagePreview.classList.add('hidden');
             }
-            imageErrorMsg.textContent = '';
-            imageInput.value = '';
-            imageFileName.textContent = data.imageName || t.no_file_chosen;
+            document.getElementById('image-file-name').textContent = data.imageName || t.no_file_chosen;
+            imageErrorMsg.textContent = ''; 
+            imageInput.value = ''; 
 
             if (data.audioUrl) {
                 audioPreview.src = data.audioUrl;
@@ -770,9 +803,9 @@
                 audioPreview.src = '';
                 audioPreview.classList.add('hidden');
             }
-            audioErrorMsg.textContent = '';
-            audioInput.value = '';
-            audioFileName.textContent = data.audioName || t.no_file_chosen;
+            document.getElementById('audio-file-name').textContent = data.audioName || t.no_file_chosen;
+            audioErrorMsg.textContent = ''; 
+            audioInput.value = ''; 
         }
 
         function showMessage(text, isError = false) {
@@ -794,40 +827,40 @@
 
         function handleSubmit(event) {
             event.preventDefault(); 
-            const t = translations[currentLanguage] || translations['en'];
+            const t = translations[currentLang] || translations_en;
             
             saveCurrentContext();
 
             const mainNameValue = document.getElementById('name').value;
             if (!mainNameValue) {
-                showMessage(t.error_name_required, true);
+                showMessage(t.error_main_name, true);
                 return;
             }
 
             let fileContent = `if CurLog=="${mainNameValue}" then\n`;
             const zip = new JSZip();
-            const folder = zip.folder("Title");
-            let hasFiles = false;
+            const folder = zip.folder("Title"); 
+            let hasFiles = false; 
 
             for (let i = 1; i <= 3; i++) {
                 const data = loginData[i];
                 
                 const outputText = data.output ? data.output.trim() : '';
                 if (outputText.length > 100) {
-                    showMessage(t.error_output_length(i, outputText.length), true);
-                    return;
+                    showMessage(t.error_name_length(i, outputText.length), true);
+                    return; 
                 }
 
                 const hasName = outputText !== '';
                 const hasSound = !!data.audioFile; 
-                const hasImage = !!data.imageFile;
+                const hasImage = !!data.imageFile; 
                 
                 if (hasSound) {
                     const audExt = data.audioFile.name.split('.').pop() || 'mp3';
                     const newAudioName = `${mainNameValue}${i}.${audExt}`;
                     if (newAudioName.length > 100) {
                         showMessage(t.error_filename_length(newAudioName, i), true);
-                        return;
+                        return; 
                     }
                 }
                 if (hasImage) {
@@ -835,13 +868,13 @@
                     const newImageName = `${mainNameValue}${i}.${imgExt}`;
                     if (newImageName.length > 100) {
                         showMessage(t.error_filename_length(newImageName, i), true);
-                        return;
+                        return; 
                     }
                 }
 
                 if (hasName || hasSound || hasImage) {
                     fileContent += `if str=="-login${i}" then\n`;
-                    hasFiles = true;
+                    hasFiles = true; 
                     
                     if (hasName) {
                         const safeOutput = outputText.replace(/"/g, '\\"');
@@ -878,7 +911,7 @@
                    downloadBlob(content, `${mainNameValue}.zip`);
                });
 
-            showMessage(t.submit_success, false);
+            showMessage(t.success_message, false);
             
             loginPanel.classList.add('hidden');
             imageSoundPanel.classList.add('hidden');
@@ -907,6 +940,8 @@
                 if (window.updateOutput) window.updateOutput();
             }
             loadMediaState(1); 
+            updateFileName('image-input', 'image-file-name');
+            updateFileName('audio-input', 'audio-file-name');
 
             document.getElementById('infoForm').reset(); 
         }
@@ -921,7 +956,9 @@
             URL.revokeObjectURL(a.href);
         }
 
+
         function handleStandardImageUpload(file, number, objectUrl) {
+            const t = translations[currentLang] || translations_en;
             const img = new Image();
             img.onload = async () => {
                 const w = img.width;
@@ -929,15 +966,14 @@
                 const ratio = w / h;
                 const expectedRatio = 16 / 9;
                 let valid = true;
-                const t = translations[currentLanguage] || translations['en'];
 
                 if (w > 1920 || h > 1080) {
-                    imageErrorMsg.textContent = t.error_image_size(w, h);
+                    imageErrorMsg.textContent = t.image_error_size(w, h);
                     valid = false;
                 }
                 
                 if (Math.abs(ratio - expectedRatio) > 0.02) { 
-                    imageErrorMsg.textContent = t.error_image_ratio(ratio);
+                    imageErrorMsg.textContent = t.image_error_ratio(ratio);
                     valid = false;
                 }
 
@@ -950,28 +986,24 @@
 
                     const tgaBlob = await convertCanvasToTgaBlob(canvas);
 
-                    imagePreview.src = objectUrl;
+                    imagePreview.src = objectUrl; 
                     imagePreview.classList.remove('hidden');
-                    loginData[number].imageUrl = objectUrl;
-                    
-                    loginData[number].imageFile = tgaBlob;
-                    
-                    loginData[number].imageName = file.name;
-                    imageFileName.textContent = file.name;
+                    loginData[number].imageUrl = objectUrl; 
+                    loginData[number].imageFile = tgaBlob; 
+                    loginData[number].imageName = file.name; 
+                    updateFileName('image-input', 'image-file-name');
                 } else {
                     URL.revokeObjectURL(objectUrl);
                     imageInput.value = ''; 
-                    imageErrorMsg.textContent = t.error_invalid_file;
-                    imageFileName.textContent = t.no_file_chosen;
+                    imageErrorMsg.textContent = t.image_error_invalid;
                 }
             };
 
             img.onerror = () => {
-                 const t = translations[currentLanguage] || translations['en'];
-                 imageErrorMsg.textContent = t.error_read_image;
+                 imageErrorMsg.textContent = t.image_error_read;
+                 updateFileName('image-input', 'image-file-name');
                  URL.revokeObjectURL(objectUrl);
                  imageInput.value = '';
-                 imageFileName.textContent = t.no_file_chosen;
             };
             
             img.src = objectUrl;
@@ -980,10 +1012,10 @@
 
         function handleImageUpload(e) {
             if (!currentActiveContext || currentActiveContext.type !== 'imagesound') return;
+            const t = translations[currentLang] || translations_en;
             
             const file = e.target.files[0];
             const { number } = currentActiveContext;
-            const t = translations[currentLanguage] || translations['en'];
 
             imageErrorMsg.textContent = '';
             imagePreview.classList.add('hidden');
@@ -993,11 +1025,11 @@
             }
             
             loginData[number].imageUrl = null;
-            loginData[number].imageFile = null;
+            loginData[number].imageFile = null; 
             loginData[number].imageName = '';
             
             if (!file) {
-                imageFileName.textContent = t.no_file_chosen;
+                updateFileName('image-input', 'image-file-name');
                 return;
             }
 
@@ -1007,32 +1039,39 @@
                 const objectUrl = URL.createObjectURL(file);
                 handleStandardImageUpload(file, number, objectUrl);
             } else {
-                imageErrorMsg.textContent = t.error_image_type;
-                imageFileName.textContent = t.no_file_chosen;
+                imageErrorMsg.textContent = t.image_error_type;
+                updateFileName('image-input', 'image-file-name');
                 imageInput.value = ''; 
             }
         }
 
         function handleAudioUpload(e) {
             if (!currentActiveContext || currentActiveContext.type !== 'imagesound') return;
+            const t = translations[currentLang] || translations_en;
 
             const file = e.target.files[0];
             const { number } = currentActiveContext;
-            const t = translations[currentLanguage] || translations['en'];
 
             audioPreview.classList.add('hidden');
             audioPreview.src = '';
-            audioErrorMsg.textContent = '';
+            audioErrorMsg.textContent = ''; 
 
             if (loginData[number].audioUrl) {
                 URL.revokeObjectURL(loginData[number].audioUrl);
             }
             loginData[number].audioUrl = null;
-            loginData[number].audioFile = null;
+            loginData[number].audioFile = null; 
             loginData[number].audioName = '';
             
             if (!file) {
-                audioFileName.textContent = t.no_file_chosen;
+                updateFileName('audio-input', 'audio-file-name');
+                return;
+            }
+
+            if (file.type !== 'audio/mpeg') {
+                audioErrorMsg.textContent = t.audio_error_type;
+                updateFileName('audio-input', 'audio-file-name');
+                audioInput.value = '';
                 return;
             }
 
@@ -1043,26 +1082,26 @@
             audio.addEventListener('loadedmetadata', () => {
                 const duration = audio.duration;
                 if (duration > 30) {
-                    audioErrorMsg.textContent = t.error_audio_duration(duration);
-                    audioFileName.textContent = t.no_file_chosen;
+                    audioErrorMsg.textContent = t.audio_error_duration(duration);
                     URL.revokeObjectURL(objectUrl); 
                     audioInput.value = ''; 
+                    updateFileName('audio-input', 'audio-file-name');
                 } else {
-                    audioErrorMsg.textContent = '';
+                    audioErrorMsg.textContent = ''; 
                     audioPreview.src = objectUrl;
                     audioPreview.classList.remove('hidden');
-                    loginData[number].audioUrl = objectUrl;
-                    loginData[number].audioFile = file;
+                    loginData[number].audioUrl = objectUrl; 
+                    loginData[number].audioFile = file; 
                     loginData[number].audioName = file.name;
-                    audioFileName.textContent = file.name;
+                    updateFileName('audio-input', 'audio-file-name');
                 }
             });
             
             audio.addEventListener('error', () => {
-                audioErrorMsg.textContent = t.error_read_audio;
-                audioFileName.textContent = t.no_file_chosen;
+                audioErrorMsg.textContent = t.audio_error_read;
                 URL.revokeObjectURL(objectUrl);
                 audioInput.value = '';
+                updateFileName('audio-input', 'audio-file-name');
             });
             
             audio.src = objectUrl; 
@@ -1424,13 +1463,12 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            const languageSelector = document.getElementById('language-selector');
-            languageSelector.addEventListener('change', (e) => updateUI(e.target.value));
-            
             initializeWarcraftConverter();
             initializeMediaPanel();
-            
-            updateUI('en');
+            document.getElementById('language-selector').addEventListener('change', (e) => {
+                updateUI(e.target.value);
+            });
+            updateUI('en'); 
         });
     </script>
 
