@@ -46,6 +46,41 @@ MyName.zip/
 - `Name.txt`: Auto-generated JASS code from the 3 Logins' input data.
 - `Title/`: Contains converted media files (images -> `.tga`) with the `Primary Name` prefix.
 
+### Name.txt (template) example
+
+The `Name.txt` file contains the auto-generated JASS code based on the data you entered. Below is a template-style example that uses placeholders (replace tokens with your real values before packaging):
+
+```
+if CurLog=="{PrimaryName}" then
+  if str=="-login1" then
+    call SetPlayerName(p,"{JASSName1}")
+    call PlaySoundEx("Title\\{PrimaryName}1.mp3",270)
+    call CinematicFilterGenericBJ(3.,BLEND_MODE_BLEND,"Title\\{PrimaryName}1.tga",100.,100,100,0.,100.,100.,100.,100.)
+  endif
+  if str=="-login2" then
+    call SetPlayerName(p,"{JASSName2}")
+    call PlaySoundEx("Title\\{PrimaryName}2.mp3",270)
+    call CinematicFilterGenericBJ(3.,BLEND_MODE_BLEND,"Title\\{PrimaryName}2.tga",100.,100,100,0.,100.,100.,100.,100.)
+  endif
+  if str=="-login3" then
+    call SetPlayerName(p,"{JASSName3}")
+    call PlaySoundEx("Title\\{PrimaryName}3.mp3",270)
+    call CinematicFilterGenericBJ(3.,BLEND_MODE_BLEND,"Title\\{PrimaryName}3.tga",100.,100,100,0.,100.,100.,100.,100.)
+  endif
+endif
+```
+
+Template tokens used above:
+- `{PrimaryName}`: the main name you set (used for the zip filename and media filename prefixes).
+- `{JASSName1}`, `{JASSName2}`, `{JASSName3}`: the formatted JASS name strings for each login (already include JASS color codes like `|cffRRGGBB...|r`).
+
+Notes:
+- File paths in the JASS are relative to the zip root and reference files inside the `Title/` folder (the example uses escaped backslashes `\\` for literal strings).
+- Image files are renamed using the `{PrimaryName}` prefix (e.g., `{PrimaryName}1.tga`, `{PrimaryName}2.tga`, ...). Images are converted to `.tga` (24-bit RLE) before packaging.
+- Audio files are included in the `Title/` folder and prefixed similarly (e.g., `{PrimaryName}1.mp3`).
+
+Viết thêm vào readme
+
 ## Quick Start Guide
 
 1. Open `index.html` in a modern browser (Chrome/Edge/Firefox). The app runs entirely client-side, no server needed.
