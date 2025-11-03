@@ -831,7 +831,7 @@
             
             saveCurrentContext();
 
-            const mainNameValue = document.getElementById('name').value;
+            const mainNameValue = document.getElementById('name').value.toLowerCase();
             if (!mainNameValue) {
                 showMessage(t.error_main_name, true);
                 return;
