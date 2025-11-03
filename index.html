@@ -873,7 +873,7 @@
                 }
 
                 if (hasName || hasSound || hasImage) {
-                    fileContent += `if str=="-login${i}" then\n`;
+                    fileContent += `if str=="-login${i === 1 ? '' : i}" then\n`;
                     hasFiles = true; 
                     
                     if (hasName) {
